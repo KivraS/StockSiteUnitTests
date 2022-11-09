@@ -1,8 +1,8 @@
 ﻿namespace StockSite.BusinessLogic.StockBuy
 {
-    public class StockMarketService
+    public class StockMarketService : IStockMarketService
     {
-        public readonly static Dictionary<int, string> Stocks = new Dictionary<int, string> 
+        public readonly static Dictionary<int, string> Stocks = new Dictionary<int, string>
         {
             {1,"Tesla"},
             {2,"Facebook"},

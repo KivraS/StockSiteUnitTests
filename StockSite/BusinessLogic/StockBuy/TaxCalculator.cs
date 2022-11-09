@@ -2,12 +2,19 @@
 
 namespace StockSite.BusinessLogic.StockBuy
 {
-    public class TaxCalculator
+    public class TaxCalculator : ITaxCalculator
     {
-        //Tax per country is 10% for gr , 20% for ro , 30% for cy. Tax doubles if amount is >100
-        public static decimal CalculateTax(decimal amount,string username)
+        private IUserDataProvider _userDataProvider;
+
+        public TaxCalculator(IUserDataProvider userDataProvider)
         {
-            string country = UserDataProvider.GetUserCountry(username);
+            _userDataProvider = userDataProvider;
+        }
+
+        //Tax per country is 10% for gr , 20% for ro , 30% for cy. Tax doubles if amount is >100
+        public virtual decimal CalculateTax(decimal amount, string username)
+        {
+            string country = _userDataProvider.GetUserCountry(username);
             decimal multiplier = amount >= 100 ? 2 : 1;
             decimal factor = 0;
             if (country == "gr")

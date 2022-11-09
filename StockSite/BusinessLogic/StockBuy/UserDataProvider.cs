@@ -10,7 +10,7 @@
             Balance = balance;
         }
     }
-    public class UserDataProvider
+    public class UserDataProvider : IUserDataProvider
     {
         private static Dictionary<String, UserDetails> Database = new Dictionary<string, UserDetails>();
         internal UserDataProvider()
@@ -33,10 +33,8 @@
         {
             return Database[username].Balance;
         }
-        //IF YOU REFACTOR THIS CODE THE CTO WHO WROTE THIS 40YEARS AGO WILL BE FORCED TO JOIN YOUR DEV TEAM AGAIN
-        public static string GetUserCountry(string username)
+        public string GetUserCountry(string username)
         {
-            //Dark magic business logic resides within this method......its not visible because its magic....and dark....and we use dark mode.....
             return Database[username].Country;
         }
     }

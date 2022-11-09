@@ -15,7 +15,8 @@ namespace StockSite.Controllers
         [HttpPost]
         public JsonResult PurchaseStock(int stockId,decimal amount)
         {
-            StockPurchaseHandler handler = new StockPurchaseHandler();
+            var userDataProvider = new UserDataProvider();
+            StockPurchaseHandler handler = new StockPurchaseHandler(userDataProvider, new TaxCalculator(userDataProvider),new StockMarketService());
             string? username = HttpContext?.User?.Identity?.Name;
             var result = handler.BuyStock(amount, stockId, username);
             return Json("Success = "+ result);
