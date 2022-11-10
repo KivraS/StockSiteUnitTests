@@ -10,7 +10,7 @@
             Balance = balance;
         }
     }
-    public class UserDataProvider
+    public class UserDataProvider : IUserDataProvider
     {
         private static Dictionary<String, UserDetails> Database = new Dictionary<string, UserDetails>();
         internal UserDataProvider()
